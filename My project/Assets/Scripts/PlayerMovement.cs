@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private float moveSpeed = 7f;
     [SerializeField]private float jumpForce = 17f;
 
+    private enum MovementState {idle, running, jumping, falling}
+
     // int wholeNumber = 16;
     // float decimalNumber = 4.54f;
     // string text  = "blahblah";
@@ -39,15 +41,21 @@ public class PlayerMovement : MonoBehaviour
 
     }
     private void UpdateAnimationState(){
+        MovementState state;
         if(dirX > 0f){
-            anim.SetBool("running", true);
+            state = MovementState.running;
             sprite.flipX = false;
         }
         else if(dirX < 0f){
-            anim.SetBool("running", true);
+            state = MovementState.running;
             sprite.flipX = true;
         } else {
-            anim.SetBool("running", false);
+            state = MovementState.idle;
         }
+
+        if(rb.velocity.y> .1f){
+        }
+
+        anim.SetInteger("state",)
     }
 }
