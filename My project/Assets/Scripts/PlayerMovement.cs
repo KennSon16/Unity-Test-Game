@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void UpdateAnimationState(){
         MovementState state;
+        
         if(dirX > 0f){
             state = MovementState.running;
             sprite.flipX = false;
@@ -54,8 +55,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if(rb.velocity.y> .1f){
+            state = MovementState.jumping;
+        } else if(rb.velocity.y < -.1f){
+            state = MovementState.falling;
         }
 
-        anim.SetInteger("state",)
+        anim.SetInteger("state", (int)state); // state is a enum 
     }
 }
